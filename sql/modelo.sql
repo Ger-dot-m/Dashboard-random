@@ -29,7 +29,7 @@ CREATE TABLE cliente (
 CREATE TABLE venta (
   pdv VARCHAR(20) NOT NULL,
   fecha DATE NOT NULL,
-  folio INT,
+  folio VARCHAR(20),
   producto VARCHAR(20),
   cliente INT,
   vendedor INT,
