@@ -1,0 +1,46 @@
+:root {
+    --c1: #c49600;
+    --c2: #fff;
+    --texto: #000;
+    --fondo: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    position: relative;
+    background-color: var(--fondo);
+}
+
+body,
+body * {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+nav .container-fluid {
+    color: var(--fondo);
+    background-color: var(--c1);
+    border: 0px solid #000;
+}
+
+.navbar-default {
+    border: 0px solid #000;
+  }
+
+  .alert-info,
+  .bg-aqua,
+  .callout.callout-info,
+  .label-info,
+  .modal-info .modal-body {
+      color: var(--texto);
+      background-color: var(--c2) !important;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
