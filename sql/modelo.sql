@@ -40,3 +40,10 @@ CREATE TABLE venta (
   FOREIGN KEY (cliente) REFERENCES cliente(cliente_id),
   FOREIGN KEY (vendedor) REFERENCES vendedor(vendedor_id)
 );
+
+// Para modificar valores existentes
+
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE `producto` SET `rodada`=0 WHERE `rodada` is null;
+
