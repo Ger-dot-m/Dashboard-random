@@ -14,6 +14,7 @@ CREATE TABLE producto (
 );
 
 CREATE TABLE vendedor (
+  pdv VARCHAR(20),
   vendedor_id INT PRIMARY KEY,
   nombre VARCHAR(255) NOT NULL,
   celular VARCHAR(20),
@@ -45,5 +46,5 @@ CREATE TABLE venta (
 
 
 SET SQL_SAFE_UPDATES = 0;
-UPDATE `producto` SET `rodada`=0 WHERE `rodada` is null;
+UPDATE "producto" SET "rodada"=0 WHERE "rodada"  is null;
 

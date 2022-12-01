@@ -39,8 +39,7 @@ for (i in 1:length(fechas)) {
         mutate(
             fecha = fechas[i],
             cantidad = cantidad,
-            importe = precio1 * cantidad,
-            precio1 = NULL
+            importe = precio1 * cantidad
         )
     ventas <- rbind(ventas, ventas_aux)
 }

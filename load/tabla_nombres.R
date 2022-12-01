@@ -35,6 +35,10 @@ vendedores$sueldo <- as.integer(
     runif(nrow(vnames), 9000, 18000)
 )
 
+vendedores$pdv <- as.integer(
+    runif(nrow(vnames), 1, 4)
+)
+
 
 clientes <- cnames %>% mutate(
     cliente_id = 1:nrow(cnames),

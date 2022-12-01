@@ -3,7 +3,7 @@ pacman::p_load(tidyverse, DBI, RMySQL)
 
 marca <- c("Canodale", "CUBE", "Brompton", "Specia ilized", "Merida", "Giant", "Scott", "SantaCruz", NA)
 linea <- c("Montaña", "Ruta", "Urbana", "Plegable", "Paseo", "Hibrida", "BMX", "Electrica", NA)
-rodada <- c(12, 14, 16, 18, 20, 22, 26, NA)
+rodada <- c(12, 14, 16, 18, 20, 22, 26)
 
 bicicletas <- crossing(
     rodada = rodada, linea = linea,
