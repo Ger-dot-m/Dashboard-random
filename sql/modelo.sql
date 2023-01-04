@@ -36,6 +36,7 @@ CREATE TABLE venta (
   vendedor INT,
   cantidad INT,
   tipoPago VARCHAR(20),
+  precio1 DOUBLE,
   importe DOUBLE,
   FOREIGN KEY (producto) REFERENCES producto(sku),
   FOREIGN KEY (cliente) REFERENCES cliente(cliente_id),
