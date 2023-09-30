@@ -1,6 +1,5 @@
 rm(list = ls())
 pacman::p_load(tidyverse, DBI, RMySQL, readxl, lubridate)
-setwd("C:/Users/Germain/OneDrive - UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO/Data_Source")
 pdv <- c("a", "b", "c")
 fechas <- seq(as.Date("2021/09/04"), by = "day", length.out = 364)
 tipo <- c("TDC", "TDD", "Efectivo", "Credito")
@@ -24,8 +23,7 @@ ventas <- aux %>%
     mutate(
         fecha = as.Date("2021/09/03"),
         cantidad = cantidad,
-        importe = precio1 * cantidad,
-        precio1 = NULL
+        importe = precio1 * cantidad
     )
 
 for (i in 1:length(fechas)) {
@@ -92,7 +90,7 @@ ventas <- ventas %>% rename(producto = sku)
 
 tablasql <- dbReadTable(con, "venta")
 cols <- names(tablasql)
-nueva <- ventas %>% select(cols)
+nueva <- ventas %>% select(all_of(cols))
 
 dbWriteTable(con, "venta", nueva, append = TRUE, row.names = FALSE)
 dbDisconnect(con)

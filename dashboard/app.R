@@ -39,99 +39,12 @@ install.janitor <- !("janitor" %in% installed.packages()[, "Package"])
 if (install.janitor) install.packages("janitor")
 library(janitor, warn.conflicts = FALSE)
 
-con <- DBI::dbConnect(RMySQL::MySQL(),
-    user = "master", password = "1234",
-    dbname = "tienda", host = "localhost"
-)
-ventas <- DBI::dbReadTable(con, "venta")
-DBI::dbDisconnect(con)
 
-data <- ventas %>%
-    group_by(fecha) %>%
-    summarise(
-        cantidad = sum(cantidad),
-        importe = sum(importe)
-    )
-
-ui <- navbarPage(
-    "Bicicletas",
-    tabPanel(
-        "Ventas",
-        fluidRow(
-            box(
-                width = 12,
-                title = NULL,
-                status = "primary",
-                solidHeader = FALSE,
-                collapsible = FALSE,
-                valueBoxOutput("usuarios"),
-                valueBoxOutput("tickets"),
-                valueBoxOutput("cpromedio")
-            ),
-            box(
-                width = 12,
-                title = NULL,
-                status = "primary",
-                solidHeader = FALSE,
-                collapsible = FALSE,
-                column(6,
-                    plotlyOutput("importes")
-                ),
-                column(6,
-                    plotlyOutput("importes")
-                )
-            )
-        )
-    ),
-    tags$head(
-        tags$link(
-            rel = "stylesheet",
-            type = "text/css",
-            href = "custom.css"
-        )
-    ),
-)
-
-
-server <- function(input, output) {
-    output$usuarios <- renderValueBox({
-        a <- ventas$cliente %>%
-            unique() %>%
-            length()
-        valueBox("Clientes", a)
-    })
-
-    output$tickets <- renderValueBox({
-        a <- ventas$folio %>%
-            unique() %>%
-            length()
-        valueBox("Tickets", a)
-    })
-
-    output$cpromedio <- renderValueBox({
-        x <- ventas$cliente %>%
-            unique() %>%
-            length()
-        valueBox(
-            "Compra por cliente",
-            paste0(
-                round(100 / x, 2), "%"
-            )
-        )
-    })
-
-    output$importes <- renderPlotly({
-        data %>%
-            plot_ly(
-                type = "scatter", mode = "lines", fill = "tozeroy"
-            ) %>%
-            add_trace(x = ~fecha, y = ~importe, name = "Importe") %>%
-            layout(showlegend = FALSE)
-    })
-}
+source("server.R", local = TRUE)
+source("UI.R", local = TRUE)
 
 shinyApp(ui, server)
 
 
 # library(shiny)
-# runApp("C:/Users/Germain/OneDrive - UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO/basedatos/bici-datos/dashboard")
+# runApp("dashboard/")

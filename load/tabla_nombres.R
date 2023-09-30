@@ -1,8 +1,7 @@
 rm(list = ls())
 pacman::p_load(tidyverse, DBI, RMySQL, readxl)
-setwd("C:/Users/Germain/OneDrive - UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO/Data_Source")
 
-data <- read_excel("nombresg.xlsx")
+data <- read_excel("load/nombresg.xlsx")
 numeros <- c("04", "91", "57", "01", "44", "15", "66", "54", "22", "89", "77")
 
 telefonos <- crossing(
@@ -56,15 +55,16 @@ con <- dbConnect(RMySQL::MySQL(),
     user = "master", password = "1234",
     dbname = "tienda", host = "localhost"
 )
+options(allow.local.infile = TRUE)
 
 tablasql <- dbReadTable(con, "vendedor")
 cols <- names(tablasql)
-nueva <- vendedores %>% select(cols)
+nueva <- vendedores %>% select(all_of(cols))
 dbWriteTable(con, "vendedor", nueva, append = TRUE, row.names = FALSE)
 
 tablasql <- dbReadTable(con, "cliente")
 cols <- names(tablasql)
-nueva <- clientes %>% select(cols)
+nueva <- clientes %>% select(all_of(cols))
 dbWriteTable(con, "cliente", nueva, append = TRUE, row.names = FALSE)
 
 dbDisconnect(con)

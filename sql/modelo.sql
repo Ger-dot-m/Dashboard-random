@@ -1,3 +1,4 @@
+# DROP DATABASE IF EXISTS tienda;
 CREATE DATABASE tienda;
 USE tienda;
 
@@ -43,9 +44,9 @@ CREATE TABLE venta (
   FOREIGN KEY (vendedor) REFERENCES vendedor(vendedor_id)
 );
 
-// Para modificar valores existentes
 
-
-SET SQL_SAFE_UPDATES = 0;
-UPDATE "producto" SET "rodada"=0 WHERE "rodada"  is null;
+SHOW VARIABLES LIKE 'sql_safe_updates';
+SET GLOBAL LOCAL_INFILE = 1;
+SET SQL_SAFE_UPDATES = 0;
+# UPDATE "producto" SET "rodada"=0 WHERE "rodada"  is null;
 
