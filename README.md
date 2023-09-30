@@ -1,9 +1,13 @@
-# Bici - datos
-Dashboard de datos ficticios de productos relacionados a las bicicletas.
+# Tienda de bicicletas
+Dashboard básico de datos ficticios de productos relacionados a las bicicletas.
 
 **Contiene**
 - Codigo para crear una base de datos relacional de ventas semi aleatorias de bicicletas con MySQL y R
 - Dashboard.
+
+![Figura 1.](https://raw.githubusercontent.com/Ger-dot-m/Dashboard-random/main/assets/figura1.PNG)
+
+![Figura 2.](https://raw.githubusercontent.com/Ger-dot-m/Dashboard-random/main/assets/figura2.PNG)
 
 # Funcionamiento
 ## Generación de los datos
